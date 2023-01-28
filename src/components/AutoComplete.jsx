@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import finnHub from '../apis/finnHub';
+import { WatchListContext } from '../context/WatchListContext';
 
 const AutoComplete = () => {
     const [search, setSearch] = useState('');
     const [results, setResults] = useState([]);
+    const {addStock} = useContext(WatchListContext);
 
     const renderDropdown = () => {
         const dropdownClass = search ? 'show' : null
@@ -11,7 +13,7 @@ const AutoComplete = () => {
             <ul className={`dropdown-menu ${dropdownClass}`} style={{height: '450px', overflowY: 'scroll', overflowX:'hidden', cursor: 'pointer'}}>
                 {results.map((result) => {
                     return (
-                        <li key={result.symbol} className='dropdown-item'>{result.description}({result.symbol})</li>
+                        <li key={result.symbol} className='dropdown-item' onClick={() => {addStock(result.symbol); setSearch('')}}>{result.description}({result.symbol})</li>
                     )
                 })}
             </ul>
