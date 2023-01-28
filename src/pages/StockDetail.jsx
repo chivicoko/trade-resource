@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import finnHub from '../apis/finnHub';
+import { StockChart } from '../components/StockChart';
 
 const formatData = (data) => {
   return data.t.map((el, index) => {
     return {
       x: el * 1000,
       y: data.c[index]
+      // y: Math.floor(data.c[index])  // to remove the decimal places of the y values
     }
   })
 }
@@ -75,8 +77,14 @@ const StockDetail = () => {
   }, [symbol])
 
   return (
-    <div>StockDetail {symbol}</div>
-  )
+    <div>  
+      {chartData && (
+          <div>
+            <StockChart chartData={chartData} symbol={symbol}/>
+          </div>
+        )}
+    </div>
+  ) 
 }
 
 export default StockDetail;
