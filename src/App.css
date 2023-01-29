@@ -37,6 +37,23 @@
   }
 } */
 
+/* @keyframes trade-image-spin {
+  from {
+    transform: rotateY(45deg);
+  }
+  to {
+    transform: rotateY(225deg);
+  }
+}
+
+
+@media (prefers-reduced-motion: no-preference) {
+}
+.trade-image {
+  perspective: 500px;
+  animation: trade-image-spin infinite 20s linear;
+} */
+
 .delete-button {
   visibility: hidden;
   display: inline-block;
